@@ -1,0 +1,222 @@
+@model HomeViewModel
+@{ ViewData["Title"] = "Fresh Home-Style Tiffin Service"; }
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Ghar<span>Ka</span>Khana</a>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#plans">Plans</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Order Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">📍 Serving Gayatri Nagar since 2019</div>
+    <h1>Fresh <em>Home-Style Food</em> Delivered Daily</h1>
+    <p>Healthy, affordable meals cooked with love — just like your mother makes. No preservatives, no compromise on taste.</p>
+    <div class="hero-btns">
+      <a href="@Model.WhatsAppUrl" target="_blank" class="btn-primary">
+        <span>🟢</span> Order on WhatsApp
+      </a>
+      <a href="#menu" class="btn-outline">See Menu →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Happy Customers</span></div>
+      <div class="stat"><span class="stat-num">5★</span><span class="stat-label">Avg. Rating</span></div>
+      <div class="stat"><span class="stat-num">4yr</span><span class="stat-label">In Business</span></div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="food-plate-wrapper">
+      <div class="food-plate-bg"></div>
+      <div class="food-plate-circle">
+        <svg viewBox="0 0 300 300" class="thali-svg" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="150" cy="150" r="140" fill="#FDF6EC" stroke="#E8892A" stroke-width="3"/>
+          <circle cx="150" cy="150" r="110" fill="none" stroke="rgba(232,137,42,0.2)" stroke-width="1.5"/>
+          <ellipse cx="150" cy="155" rx="45" ry="35" fill="#F5F0E8"/>
+          <ellipse cx="148" cy="152" rx="38" ry="28" fill="white"/>
+          <circle cx="80" cy="110" r="28" fill="#F5C842" opacity="0.85"/>
+          <circle cx="80" cy="110" r="22" fill="#E8A020"/>
+          <circle cx="220" cy="110" r="28" fill="#5A9E52" opacity="0.7"/>
+          <circle cx="220" cy="110" r="22" fill="#3A6B35" opacity="0.85"/>
+          <ellipse cx="100" cy="210" rx="32" ry="18" fill="#DEB887"/>
+          <ellipse cx="100" cy="206" rx="30" ry="16" fill="#C8A96E"/>
+          <circle cx="210" cy="210" r="24" fill="#C0522A" opacity="0.7"/>
+          <circle cx="210" cy="210" r="18" fill="#E8892A" opacity="0.8"/>
+          <circle cx="145" cy="150" r="2" fill="#C8A96E" opacity="0.5"/>
+          <circle cx="155" cy="155" r="2" fill="#C8A96E" opacity="0.5"/>
+          <circle cx="148" cy="162" r="1.5" fill="#C8A96E" opacity="0.5"/>
+          <text x="150" y="295" text-anchor="middle" font-size="11" fill="#7A6758" font-family="DM Sans, sans-serif">Veg Thali</text>
+        </svg>
+      </div>
+      <div class="orbit-item"><span class="orbit-emoji">🥗</span><span>Fresh</span></div>
+      <div class="orbit-item"><span class="orbit-emoji">♻️</span><span>Daily</span></div>
+      <div class="orbit-item"><span class="orbit-emoji">❤️</span><span>Healthy</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="menu-header reveal">
+    <span class="section-label">Our Menu</span>
+    <h2 class="section-title">Cooked Fresh Every Morning</h2>
+    <p class="section-sub">All meals prepared with fresh ingredients — no frozen food, no artificial flavours. Just honest home cooking.</p>
+  </div>
+  <div class="menu-grid">
+    @for (int i = 0; i < Model.MenuItems.Count; i++)
+    {
+      var item  = Model.MenuItems[i];
+      var delay = (i * 0.07).ToString("F2", System.Globalization.CultureInfo.InvariantCulture);
+      <div class="menu-card reveal" style="transition-delay:@(delay)s">
+        <span class="card-emoji">@item.Emoji</span>
+        <div class="card-name">@item.Name</div>
+        <div class="card-desc">@item.Desc</div>
+        <div class="card-footer">
+          <div class="card-price">@item.Price<span>@item.Per</span></div>
+          <span class="card-tag">@item.Tag</span>
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- PLANS -->
+<section class="plans-section" id="plans">
+  <div class="plans-header reveal">
+    <span class="section-label">Subscription Plans</span>
+    <h2 class="section-title">Save More, Eat Better</h2>
+    <p class="section-sub">Subscribe and forget the daily hassle of cooking. We deliver fresh food to your door.</p>
+  </div>
+  <div class="plans-grid">
+
+    <div class="plan-card reveal">
+      <div class="plan-name">Weekly Plan</div>
+      <div class="plan-tagline">Perfect to try us out</div>
+      <div class="plan-price">₹500</div>
+      <div class="plan-price-sub">for 7 days · 2 meals/day</div>
+      <ul class="plan-features">
+        <li>Lunch + Dinner daily</li>
+        <li>Fresh home-cooked meals</li>
+        <li>WhatsApp order changes</li>
+        <li>Hygienic packaging</li>
+      </ul>
+      <a href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20subscribe%20for%20the%20Weekly%20Plan."
+         target="_blank" class="plan-btn plan-btn-light">Start This Week →</a>
+    </div>
+
+    <div class="plan-card featured reveal" style="transition-delay:0.1s">
+      <div class="plan-badge">🔥 Most Popular</div>
+      <div class="plan-name">Monthly Plan</div>
+      <div class="plan-tagline">Best value for regulars</div>
+      <div class="plan-price">₹2000</div>
+      <div class="plan-price-sub">for 30 days · 2 meals/day</div>
+      <ul class="plan-features">
+        <li>Lunch + Dinner daily</li>
+        <li>Rotating weekly menu</li>
+        <li>1 free special meal/week</li>
+        <li>Priority delivery</li>
+        <li>Save ₹400 vs weekly</li>
+      </ul>
+      <a href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20subscribe%20for%20the%20Monthly%20Plan."
+         target="_blank" class="plan-btn plan-btn-dark">Subscribe Monthly →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="reviews">
+  <div class="testimonials-header reveal">
+    <span class="section-label">Customer Reviews</span>
+    <h2 class="section-title">What Our Customers Say</h2>
+    <p class="section-sub">Real people, real stories. Our customers are our biggest strength.</p>
+  </div>
+  <div class="testimonials-grid">
+    @for (int i = 0; i < Model.Testimonials.Count; i++)
+    {
+      var t     = Model.Testimonials[i];
+      var delay = (i * 0.1).ToString("F1", System.Globalization.CultureInfo.InvariantCulture);
+      <div class="testimonial-card reveal" style="transition-delay:@(delay)s">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">"@t.Text"</div>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:@t.Color">@t.Avatar</div>
+          <div>
+            <div class="author-name">@t.Name</div>
+            <div class="author-role">@t.Role</div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-info-side reveal">
+    <span class="section-label">Contact Us</span>
+    <h2 class="section-title">Order Today, Eat Tomorrow</h2>
+    <p class="section-sub">Call or WhatsApp us to place your order. We're available 8 AM – 9 PM, Monday to Saturday.</p>
+    <div class="contact-cards">
+      <div class="contact-card">
+        <div class="contact-icon" style="background:rgba(232,137,42,0.1)">📞</div>
+        <div>
+          <div class="contact-card-label">Phone</div>
+          <div class="contact-card-value">+91 98765 43210</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon" style="background:rgba(37,211,102,0.1)">💬</div>
+        <div>
+          <div class="contact-card-label">WhatsApp</div>
+          <div class="contact-card-value">+91 98765 43210</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon" style="background:rgba(192,82,42,0.1)">📍</div>
+        <div>
+          <div class="contact-card-label">Location</div>
+          <div class="contact-card-value">Gayatri Nagar, Hyderabad</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon" style="background:rgba(58,107,53,0.1)">🕐</div>
+        <div>
+          <div class="contact-card-label">Delivery Hours</div>
+          <div class="contact-card-value">8–10 AM (Breakfast) · 12–2 PM (Lunch) · 7–9 PM (Dinner)</div>
+        </div>
+      </div>
+    </div>
+    <a href="@Model.WhatsAppUrl" target="_blank" class="wa-btn-large">
+      <span style="font-size:1.3rem">💬</span> Chat on WhatsApp
+    </a>
+  </div>
+
+  <div class="contact-map-side reveal" style="transition-delay:0.15s">
+    <div class="map-header">
+      <div class="map-dot"></div>
+      <div class="map-title">Gayatri Nagar, Hyderabad, Telangana</div>
+    </div>
+    <div class="map-placeholder">
+      <div class="map-pin">📍</div>
+      <div class="map-address">
+        <strong>GharKaKhana Tiffin Service</strong><br>
+        Near Main Road, Gayatri Nagar<br>
+        Hyderabad, Telangana – 500018<br><br>
+        <em style="font-size:0.8rem;opacity:0.7">Free delivery within 2km radius</em>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Ghar<span>Ka</span>Khana</div>
+  <div class="footer-sub">© @DateTime.Now.Year GharKaKhana Tiffin Service · Gayatri Nagar, Hyderabad · Made with ❤️ &amp; 🌶️</div>
+</footer>
